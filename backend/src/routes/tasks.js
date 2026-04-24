@@ -4,10 +4,10 @@ import { protect } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// All routes are protected
+
 router.use(protect);
 
-// GET /api/tasks – get all tasks for the logged-in user
+
 router.get('/', async (req, res) => {
   try {
     const tasks = await Task.find({ createdBy: req.user._id }).sort({ createdAt: -1 });
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST /api/tasks – create a new task
+
 router.post('/', async (req, res) => {
   try {
     const { title, description, status, priority, dueDate } = req.body;
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PUT /api/tasks/:id – update a task
+
 router.put('/:id', async (req, res) => {
   try {
     const task = await Task.findOne({ _id: req.params.id, createdBy: req.user._id });
@@ -64,7 +64,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE /api/tasks/:id – delete a task
+
 router.delete('/:id', async (req, res) => {
   try {
     const task = await Task.findOneAndDelete({ _id: req.params.id, createdBy: req.user._id });
