@@ -156,7 +156,7 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, refreshTasks }) => {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm text-gray-700 border border-gray-300 dark:text-white rounded-lg hover:bg-gray-50"
+              className="px-4 py-2 text-sm text-gray-700 border border-gray-300 dark:text-white rounded-lg hover:bg-gray-50 hover:dark:text-black"
             >
               Cancel
             </button>
