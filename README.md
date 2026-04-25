@@ -6,8 +6,8 @@
 
 ## 🔗 Live Links
 
-- **Frontend (Vercel):** [https://taskbridge-app-kappa.vercel.app/](https://taskbridge-app-kappa.vercel.app/) *(Placeholder)*
-- **Backend (Render):** [https://taskbridge-api-r9xd.onrender.com](https://taskbridge-api-r9xd.onrender.com) *(Placeholder)*
+- **Frontend (Vercel):** [https://taskbridge-app-kappa.vercel.app/](https://taskbridge-app-kappa.vercel.app/) 
+- **Backend (Render):** [https://taskbridge-api-r9xd.onrender.com](https://taskbridge-api-r9xd.onrender.com) 
 
 ---
 
@@ -23,10 +23,12 @@
 
 ## 📸 Screenshots
 
-*(Add your screenshots here. You can drag and drop images or use markdown links.)*
 
-![Dashboard Preview](https://via.placeholder.com/800x400.png?text=Dashboard+Preview)
-![Dark Mode Preview](https://via.placeholder.com/800x400.png?text=Dark+Mode+Preview)
+![Dashboard Preview]<img width="1709" height="981" alt="Screenshot 2026-04-25 at 10 32 33 AM" src="https://github.com/user-attachments/assets/0bd4619d-1c4d-4805-a24c-a72216a038b9" />
+
+
+![Dark Mode Preview]<img width="1709" height="981" alt="Screenshot 2026-04-25 at 10 33 06 AM" src="https://github.com/user-attachments/assets/ed2ec803-5477-45c9-8b9b-5b23399573e3" />
+
 
 ---
 
