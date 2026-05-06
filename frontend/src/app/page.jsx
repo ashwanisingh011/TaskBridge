@@ -1,8 +1,9 @@
+"use client";
 import { useState, useEffect } from 'react';
-import api from '../api/axios';
-import { useAuth } from '../context/useAuth';
-import TaskCard from '../components/TaskCard';
-import TaskModal from '../components/TaskModal';
+import api from '@/api/axios';
+import { useAuth } from '@/context/useAuth';
+import TaskCard from '@/components/TaskCard';
+import TaskModal from '@/components/TaskModal';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -157,4 +158,5 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+import ProtectedRoute from '@/components/ProtectedRoute';
+export default function Page() { return <ProtectedRoute><Dashboard /></ProtectedRoute>; }

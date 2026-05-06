@@ -1,11 +1,13 @@
+"use client";
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/axios';
-import { useAuth } from '../context/useAuth';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import api from '@/api/axios';
+import { useAuth } from '@/context/useAuth';
 
 const Login = () => {
   const { login } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [form, setForm] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
@@ -47,7 +49,7 @@ const Login = () => {
     try {
       const { data } = await api.post('/auth/login', form);
       login(data.user, data.token);
-      navigate('/');
+      router.push('/');
     } catch (err) {
       setServerError(err.response?.data?.message || 'Login failed. Please try again.');
     } finally {
@@ -134,7 +136,7 @@ const Login = () => {
 
         <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-6">
           Don&apos;t have an account?{' '}
-          <Link to="/register" className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
+          <Link href="/register" className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
             Register
           </Link>
         </p>
