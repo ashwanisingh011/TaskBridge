@@ -64,7 +64,7 @@ const BacklogIssueItem = ({ issue, index, projectKey }) => {
 
 export default function BacklogList({ listId, title, issues, projectKey, sprintInfo }) {
   return (
-    <div className="mb-6">
+    <div className="mb-4">
       <div className="flex items-center justify-between mb-2 px-2">
         <div className="flex items-center gap-4">
           <h2 className="font-semibold text-slate-800">{title}</h2>

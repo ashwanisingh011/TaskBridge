@@ -9,8 +9,8 @@ export default function ProjectsDashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="flex-1 p-8 max-w-6xl mx-auto w-full">
-      <div className="flex justify-between items-center mb-8">
+    <div className="flex-1 p-4 max-w-6xl mx-auto w-full">
+      <div className="flex justify-between items-center mb-5">
         <h1 className="text-2xl font-semibold text-slate-800">Projects</h1>
         <button
           onClick={() => setIsModalOpen(true)}
@@ -20,7 +20,7 @@ export default function ProjectsDashboard() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {projects.map((project) => (
           <Link
             key={project.id}
@@ -48,9 +48,9 @@ export default function ProjectsDashboard() {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-md shadow-lg w-full max-w-md p-6">
+          <div className="bg-white rounded-md shadow-lg w-full max-w-md p-3">
             <h2 className="text-xl font-semibold mb-4 text-slate-800">Create Project</h2>
-            <p className="text-slate-600 mb-6 text-sm">
+            <p className="text-slate-600 mb-4 text-sm">
               This is a dummy modal for creating projects. The actual implementation will be wired up to the backend later.
             </p>
             <div className="flex justify-end gap-3">

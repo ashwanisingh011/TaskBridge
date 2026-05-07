@@ -29,7 +29,7 @@ export default function IssuePage({ params }) {
     }
   }, [projectKey, issueKey, issues]);
 
-  if (!issue || !project) return <div className="p-8">Loading issue...</div>;
+  if (!issue || !project) return <div className="p-4">Loading issue...</div>;
 
   const assignee = issue.assigneeId ? getUser(issue.assigneeId) : null;
   const reporter = issue.reporterId ? getUser(issue.reporterId) : null;
@@ -46,7 +46,7 @@ export default function IssuePage({ params }) {
   return (
     <div className="flex flex-col h-full bg-white text-slate-800">
       {/* Top Header */}
-      <div className="px-8 pt-6 pb-4 flex items-center justify-between">
+      <div className="px-4 pt-4 pb-4 flex items-center justify-between">
         <div className="flex items-center gap-3 text-sm text-slate-500">
           <Link href={`/projects/${projectKey}/board`} className="hover:underline">Projects</Link>
           <span>/</span>
@@ -74,14 +74,14 @@ export default function IssuePage({ params }) {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-8 pb-12 flex flex-col lg:flex-row gap-10">
+      <div className="flex-1 overflow-y-auto px-4 pb-6 flex flex-col lg:flex-row gap-10">
         {/* Left Column - Main Content */}
         <div className="flex-[2] min-w-0">
-          <h1 className="text-2xl font-semibold mb-6 hover:bg-slate-50 p-1 -ml-1 rounded-sm cursor-text transition-colors">
+          <h1 className="text-2xl font-semibold mb-4 hover:bg-slate-50 p-1 -ml-1 rounded-sm cursor-text transition-colors">
             {issue.title}
           </h1>
 
-          <div className="flex items-center gap-2 mb-6 text-sm text-slate-600 font-medium">
+          <div className="flex items-center gap-2 mb-4 text-sm text-slate-600 font-medium">
             <button className="flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-sm transition-colors">
               <Paperclip className="w-4 h-4" /> Attach
             </button>
@@ -90,7 +90,7 @@ export default function IssuePage({ params }) {
             </button>
           </div>
 
-          <div className="mb-8">
+          <div className="mb-5">
             <h3 className="font-semibold text-slate-800 mb-3">Description</h3>
             {isEditingDesc ? (
               <div className="space-y-3">
@@ -127,7 +127,7 @@ export default function IssuePage({ params }) {
 
           <div>
             <h3 className="font-semibold text-slate-800 mb-4">Activity</h3>
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-4 mb-4">
               <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-medium shrink-0">
                 J
               </div>
@@ -138,7 +138,7 @@ export default function IssuePage({ params }) {
               />
             </div>
 
-            <div className="text-center py-6 text-sm text-slate-500 border border-slate-200 border-dashed rounded-sm bg-slate-50">
+            <div className="text-center py-3 text-sm text-slate-500 border border-slate-200 border-dashed rounded-sm bg-slate-50">
               No recent activity
             </div>
           </div>
@@ -146,7 +146,7 @@ export default function IssuePage({ params }) {
 
         {/* Right Column - Sidebar */}
         <div className="flex-1 max-w-sm">
-          <div className="mb-6">
+          <div className="mb-4">
             <select
               value={issue.status}
               onChange={handleStatusChange}

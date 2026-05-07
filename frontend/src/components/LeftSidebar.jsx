@@ -25,7 +25,7 @@ export default function LeftSidebar({ projectKey }) {
     >
       {/* Resizer/Collapse button */}
       <div
-        className="absolute -right-3 top-6 bg-white border border-slate-200 rounded-full p-0.5 cursor-pointer hover:bg-slate-100 shadow-sm z-10 text-slate-500 hover:text-blue-600 transition-colors"
+        className="absolute -right-3 top-3 bg-white border border-slate-200 rounded-full p-0.5 cursor-pointer hover:bg-slate-100 shadow-sm z-10 text-slate-500 hover:text-blue-600 transition-colors"
         onClick={() => setCollapsed(!collapsed)}
       >
         {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}

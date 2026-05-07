@@ -61,7 +61,7 @@ export default function BoardPage({ params }) {
     updateIssue({ ...draggedIssue, status: newStatus });
   };
 
-  if (!project) return <div className="p-8">Loading board...</div>;
+  if (!project) return <div className="p-4">Loading board...</div>;
 
   const filteredIssues = boardIssues.filter(issue =>
     issue.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -70,7 +70,7 @@ export default function BoardPage({ params }) {
 
   return (
     <div className="flex flex-col h-full bg-white">
-      <div className="px-8 pt-6 pb-4 border-b border-slate-200">
+      <div className="px-4 pt-4 pb-4 border-b border-slate-200">
         <div className="text-sm text-slate-500 mb-2">Projects / {project.name}</div>
         <h1 className="text-2xl font-semibold text-slate-800 mb-4">{projectKey} board</h1>
 
@@ -94,7 +94,7 @@ export default function BoardPage({ params }) {
         </div>
       </div>
 
-      <div className="flex-1 overflow-x-auto overflow-y-hidden p-6">
+      <div className="flex-1 overflow-x-auto overflow-y-hidden p-3">
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="flex items-start gap-4 h-full pb-4">
             {STATUS_COLUMNS.map(column => (

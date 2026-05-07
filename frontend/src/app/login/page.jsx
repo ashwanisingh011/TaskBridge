@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import api from '@/api/axios';
 import { useAuth } from '@/context/useAuth';
 
+import AtlassianBackground from '@/components/AtlassianBackground';
+
 const Login = () => {
   const { login } = useAuth();
   const router = useRouter();
@@ -58,7 +60,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 relative">
+    <div className="min-h-screen flex items-center justify-center bg-[#FAFBFC] dark:bg-gray-900 px-4 relative overflow-hidden">
+      <AtlassianBackground />
       <button
         onClick={toggleTheme}
         className="absolute top-4 right-4 text-lg p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -66,12 +69,12 @@ const Login = () => {
       >
         {isDarkMode ? '🌙' : '☀️'}
       </button>
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+      <div className="w-full max-w-[400px] bg-white dark:bg-gray-800 rounded-sm shadow-[0_0_10px_rgba(0,0,0,0.1)] p-4 z-10">
         <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-1">Welcome back</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Sign in to TaskBridge</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Sign in to TaskBridge</p>
 
         {serverError && (
-          <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg mb-4">
+          <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-sm mb-4">
             {serverError}
           </div>
         )}
@@ -84,7 +87,7 @@ const Login = () => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+              className={`w-full border rounded-sm px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0052CC] bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
                 errors.email ? 'border-red-400' : 'border-gray-300 dark:border-gray-600'
               }`}
               placeholder="you@example.com"
@@ -100,7 +103,7 @@ const Login = () => {
                 name="password"
                 value={form.password}
                 onChange={handleChange}
-                className={`w-full border rounded-lg px-3 py-2 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                className={`w-full border rounded-sm px-3 py-2 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#0052CC] bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
                   errors.password ? 'border-red-400' : 'border-gray-300 dark:border-gray-600'
                 }`}
                 placeholder="••••••••"
@@ -128,15 +131,15 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-60 transition-colors"
+            className="w-full bg-[#0052CC] text-white py-2 rounded-sm text-sm font-medium hover:bg-[#0047B3] disabled:opacity-60 transition-colors"
           >
             {loading ? 'Signing in…' : 'Sign In'}
           </button>
         </form>
 
-        <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-6">
+        <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-4">
           Don&apos;t have an account?{' '}
-          <Link href="/register" className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
+          <Link href="/register" className="text-[#0052CC] dark:text-indigo-400 font-medium hover:underline">
             Register
           </Link>
         </p>

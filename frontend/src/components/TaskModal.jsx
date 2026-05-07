@@ -67,7 +67,7 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, refreshTasks }) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-md">
-        <div className="flex items-center justify-between px-6 py-4 border-b">
+        <div className="flex items-center justify-between px-3 py-4 border-b">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
             {taskToEdit ? 'Edit Task' : 'Add New Task'}
           </h2>
@@ -80,7 +80,7 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, refreshTasks }) => {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-3 space-y-4">
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-3 py-2 rounded-lg">
               {error}
