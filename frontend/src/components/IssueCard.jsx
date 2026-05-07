@@ -17,9 +17,9 @@ export default function IssueCard({ issue, index, projectKey }) {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className={`bg-white p-3 rounded-md shadow-sm border border-slate-200 mb-2 cursor-grab hover:bg-slate-50 transition-colors ${snapshot.isDragging ? 'shadow-md ring-2 ring-blue-500 ring-opacity-50' : ''}`}
+          className={`bg-white p-3 rounded-md shadow-sm border border-slate-200 mb-2 cursor-grab hover:bg-slate-50 transition-colors dark:bg-slate-950 dark:border-slate-800 dark:hover:bg-slate-900 ${snapshot.isDragging ? 'shadow-md ring-2 ring-blue-500 ring-opacity-50 dark:ring-[#579DFF]' : ''}`}
         >
-          <div className="text-sm text-slate-800 mb-2 line-clamp-2">
+          <div className="text-sm text-slate-800 mb-2 line-clamp-2 dark:text-slate-100">
             {issue.title}
           </div>
 
@@ -28,7 +28,7 @@ export default function IssueCard({ issue, index, projectKey }) {
               <IssueTypeIcon type={issue.type} />
               <Link
                 href={`/projects/${projectKey}/issues/${issue.key}`}
-                className="text-xs font-medium text-slate-600 hover:text-blue-600 hover:underline"
+                className="text-xs font-medium text-slate-600 hover:text-blue-600 hover:underline dark:text-slate-400 dark:hover:text-[#579DFF]"
                 onClick={(e) => {
                   // Pre-empt drag if clicking the link
                   e.stopPropagation();
@@ -42,7 +42,7 @@ export default function IssueCard({ issue, index, projectKey }) {
               <PriorityIcon priority={issue.priority} />
 
               {issue.storyPoints && (
-                <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-semibold text-slate-600">
+                <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">
                   {issue.storyPoints}
                 </div>
               )}
@@ -59,7 +59,7 @@ export default function IssueCard({ issue, index, projectKey }) {
                   )}
                 </div>
               ) : (
-                <div className="w-6 h-6 rounded-full bg-slate-200 border border-slate-300 border-dashed flex items-center justify-center ml-1" title="Unassigned"></div>
+                <div className="w-6 h-6 rounded-full bg-slate-200 border border-slate-300 border-dashed flex items-center justify-center ml-1 dark:bg-slate-800 dark:border-slate-700" title="Unassigned"></div>
               )}
             </div>
           </div>

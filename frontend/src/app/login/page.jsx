@@ -1,9 +1,13 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import api from '@/api/axios';
 import { useAuth } from '@/context/useAuth';
+
+import AtlassianBackground from '@/components/AtlassianBackground';
+import AuthCardPattern from '@/components/AuthCardPattern';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const Login = () => {
   const { login } = useAuth();
@@ -13,17 +17,7 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
-  useEffect(() => {
-    setIsDarkMode(document.documentElement.classList.contains('dark'));
-  }, []);
-
-  const toggleTheme = () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    setIsDarkMode(isDark);
-  };
 
   const validate = () => {
     const errs = {};
@@ -58,57 +52,89 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 relative">
-      <button
-        onClick={toggleTheme}
-        className="absolute top-4 right-4 text-lg p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-        title="Toggle Theme"
-      >
-        {isDarkMode ? '🌙' : '☀️'}
-      </button>
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-1">Welcome back</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Sign in to TaskBridge</p>
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#F7F8F9] px-4 py-10 text-[#172B4D] dark:bg-slate-950 dark:text-slate-100">
+      <AtlassianBackground />
+      <ThemeToggle className="absolute right-5 top-5 z-20" />
 
-        {serverError && (
-          <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg mb-4">
-            {serverError}
+      <div className="relative z-10 grid w-full max-w-5xl items-center gap-10 lg:grid-cols-[1fr_400px]">
+        <section className="hidden lg:block">
+          <div className="mb-5 inline-flex rounded-full border border-[#B3D4FF] bg-white/70 px-3 py-1 text-xs font-semibold text-[#0052CC] shadow-sm backdrop-blur dark:border-blue-900 dark:bg-slate-900/70 dark:text-[#85B8FF]">
+            Plan, track, and ship with focus
           </div>
-        )}
+          <h2 className="max-w-lg text-4xl font-semibold leading-tight tracking-tight text-[#172B4D] dark:text-white">
+            One calm place for issues, boards, and delivery work.
+          </h2>
+          <p className="mt-4 max-w-md text-sm leading-6 text-[#42526E] dark:text-slate-400">
+            A Jira-inspired workspace with clean navigation, focused task boards, and a simple path back into your project.
+          </p>
+          <div className="mt-8 grid max-w-lg grid-cols-3 gap-3">
+            {['To Do', 'In Progress', 'Done'].map((column, index) => (
+              <div key={column} className="rounded-lg border border-white/70 bg-white/80 p-3 shadow-[0_12px_30px_rgba(9,30,66,0.12)] backdrop-blur dark:border-slate-700 dark:bg-slate-900/75">
+                <div className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-[#6B778C] dark:text-slate-500">{column}</div>
+                <div className="space-y-2">
+                  <div className="h-9 rounded bg-[#F4F5F7] dark:bg-slate-800" />
+                  <div className={`h-9 rounded ${index === 2 ? 'bg-[#E3FCEF] dark:bg-emerald-950/50' : 'bg-[#E9F2FF] dark:bg-blue-950/50'}`} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-        <form onSubmit={handleSubmit} noValidate className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+        <section>
+          <div className="mb-6 flex items-center justify-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded bg-[#0052CC] text-sm font-bold text-white shadow-sm">
+            T
+          </div>
+          <span className="text-xl font-semibold tracking-tight text-[#172B4D] dark:text-white">TaskBridge</span>
+          </div>
+
+          <div className="relative overflow-hidden rounded-lg border border-white/80 bg-white/95 px-10 py-8 shadow-[0_16px_48px_rgba(9,30,66,0.18)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/95">
+          <AuthCardPattern />
+          <div className="relative">
+            <div className="mx-auto mb-5 flex h-10 w-10 items-center justify-center rounded-lg bg-[#E9F2FF] text-[#0052CC] shadow-sm dark:bg-blue-950/60 dark:text-[#85B8FF]">
+              <span className="text-sm font-bold">TB</span>
+            </div>
+            <h1 className="mb-6 text-center text-base font-semibold text-[#172B4D] dark:text-white">
+              Log in to continue
+            </h1>
+
+            {serverError && (
+              <div className="mb-4 rounded border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/70 dark:bg-red-950/40 dark:text-red-200">
+                {serverError}
+              </div>
+            )}
+
+          <form onSubmit={handleSubmit} noValidate className="space-y-4">
             <input
               type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
-              className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
-                errors.email ? 'border-red-400' : 'border-gray-300 dark:border-gray-600'
+              aria-label="Email"
+              className={`h-10 w-full rounded border bg-white px-3 text-sm text-[#172B4D] outline-none transition-colors placeholder:text-[#6B778C] focus:border-[#4C9AFF] focus:ring-2 focus:ring-[#4C9AFF]/30 dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-500 ${
+                errors.email ? 'border-red-400' : 'border-[#DFE1E6] dark:border-slate-700'
               }`}
-              placeholder="you@example.com"
+              placeholder="Enter email"
             />
             {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
-          </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 value={form.password}
                 onChange={handleChange}
-                className={`w-full border rounded-lg px-3 py-2 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
-                  errors.password ? 'border-red-400' : 'border-gray-300 dark:border-gray-600'
+                aria-label="Password"
+                className={`h-10 w-full rounded border bg-white px-3 pr-10 text-sm text-[#172B4D] outline-none transition-colors placeholder:text-[#6B778C] focus:border-[#4C9AFF] focus:ring-2 focus:ring-[#4C9AFF]/30 dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-500 ${
+                  errors.password ? 'border-red-400' : 'border-[#DFE1E6] dark:border-slate-700'
                 }`}
-                placeholder="••••••••"
+                placeholder="Enter password"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                className="absolute inset-y-0 right-0 flex items-center pr-3 text-[#6B778C] hover:text-[#172B4D] dark:text-slate-400 dark:hover:text-white"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword ? (
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -123,23 +149,27 @@ const Login = () => {
               </button>
             </div>
             {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password}</p>}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="h-10 w-full rounded bg-[#0052CC] text-sm font-semibold text-white transition-colors hover:bg-[#0747A6] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {loading ? 'Logging in...' : 'Log in'}
+            </button>
+          </form>
+
+          <div className="my-6 border-t border-[#DFE1E6] dark:border-slate-800" />
+
+          <p className="text-center text-sm text-[#6B778C] dark:text-slate-400">
+            Can&apos;t log in? <span className="px-1 text-[#6B778C]">|</span>{' '}
+            <Link href="/register" className="font-medium text-[#0052CC] hover:underline dark:text-[#579DFF]">
+              Create an account
+            </Link>
+          </p>
           </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-indigo-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-60 transition-colors"
-          >
-            {loading ? 'Signing in…' : 'Sign In'}
-          </button>
-        </form>
-
-        <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-6">
-          Don&apos;t have an account?{' '}
-          <Link href="/register" className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
-            Register
-          </Link>
-        </p>
+          </div>
+        </section>
       </div>
     </div>
   );
