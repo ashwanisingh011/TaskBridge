@@ -18,40 +18,40 @@ const BacklogIssueItem = ({ issue, index, projectKey }) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className={`flex items-center gap-3 p-2 bg-white border border-slate-200 group hover:bg-slate-50 transition-colors -mt-[1px] first:mt-0 ${snapshot.isDragging ? 'shadow-lg ring-1 ring-blue-500 z-10' : ''}`}
+          className={`flex items-center gap-3 p-2 bg-white border border-slate-200 group hover:bg-slate-50 transition-colors -mt-[1px] first:mt-0 dark:bg-slate-950 dark:border-slate-800 dark:hover:bg-slate-900 ${snapshot.isDragging ? 'shadow-lg ring-1 ring-blue-500 z-10 dark:ring-[#579DFF]' : ''}`}
         >
           <IssueTypeIcon type={issue.type} />
 
           <Link
             href={`/projects/${projectKey}/issues/${issue.key}`}
-            className="text-xs font-medium text-slate-600 hover:text-blue-600 hover:underline shrink-0 w-16"
+            className="text-xs font-medium text-slate-600 hover:text-blue-600 hover:underline shrink-0 w-16 dark:text-slate-400 dark:hover:text-[#579DFF]"
           >
             {issue.key}
           </Link>
 
-          <div className="text-sm text-slate-800 truncate flex-1">
+          <div className="text-sm text-slate-800 truncate flex-1 dark:text-slate-100">
             {issue.title}
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
             {issue.storyPoints && (
-              <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-semibold text-slate-600">
+              <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">
                 {issue.storyPoints}
               </div>
             )}
 
             <PriorityIcon priority={issue.priority} />
 
-            <div className="text-xs text-slate-500 w-20 text-right uppercase">
+            <div className="text-xs text-slate-500 w-20 text-right uppercase dark:text-slate-500">
               {issue.status}
             </div>
 
-            <div className="w-6 h-6 rounded-full bg-slate-200 border border-slate-300 border-dashed flex items-center justify-center ml-2 overflow-hidden">
+            <div className="w-6 h-6 rounded-full bg-slate-200 border border-slate-300 border-dashed flex items-center justify-center ml-2 overflow-hidden dark:bg-slate-800 dark:border-slate-700">
               {assignee ? (
                 assignee.avatar ? (
                   <img src={assignee.avatar} alt={assignee.name} className="w-full h-full object-cover" />
                 ) : (
-                  <span className="text-[10px] font-medium text-slate-600">{assignee.name.charAt(0)}</span>
+                  <span className="text-[10px] font-medium text-slate-600 dark:text-slate-300">{assignee.name.charAt(0)}</span>
                 )
               ) : null}
             </div>
@@ -67,24 +67,24 @@ export default function BacklogList({ listId, title, issues, projectKey, sprintI
     <div className="mb-4">
       <div className="flex items-center justify-between mb-2 px-2">
         <div className="flex items-center gap-4">
-          <h2 className="font-semibold text-slate-800">{title}</h2>
+          <h2 className="font-semibold text-slate-800 dark:text-slate-100">{title}</h2>
           {sprintInfo && (
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-slate-500 dark:text-slate-500">
               {sprintInfo.startDate} - {sprintInfo.endDate}
             </span>
           )}
-          <span className="text-xs font-medium bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full">
+          <span className="text-xs font-medium bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full dark:bg-slate-800 dark:text-slate-300">
             {issues.length} issues
           </span>
         </div>
 
         {listId === 'sprint-active' && (
-          <button className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 text-sm rounded-sm transition-colors">
+          <button className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 text-sm rounded-sm transition-colors dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800">
             Complete sprint
           </button>
         )}
         {listId === 'backlog' && (
-          <button className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 text-sm rounded-sm transition-colors">
+          <button className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 text-sm rounded-sm transition-colors dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800">
             Create sprint
           </button>
         )}
@@ -95,10 +95,10 @@ export default function BacklogList({ listId, title, issues, projectKey, sprintI
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className={`min-h-[60px] rounded-sm transition-colors ${snapshot.isDraggingOver ? 'bg-blue-50/50' : ''}`}
+            className={`min-h-[60px] rounded-sm transition-colors ${snapshot.isDraggingOver ? 'bg-blue-50/50 dark:bg-blue-950/30' : ''}`}
           >
             {issues.length === 0 ? (
-              <div className="border border-slate-200 border-dashed rounded-sm p-4 text-center text-sm text-slate-500 bg-slate-50">
+              <div className="border border-slate-200 border-dashed rounded-sm p-4 text-center text-sm text-slate-500 bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
                 Plan your sprint by dragging issues here
               </div>
             ) : (

@@ -2,9 +2,9 @@
 import api from '../api/axios';
 
 const PRIORITY_COLORS = {
-  low: 'bg-blue-100 text-blue-800',
-  medium: 'bg-yellow-100 text-yellow-800',
-  high: 'bg-red-100 text-red-800',
+  low: 'bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200',
+  medium: 'bg-yellow-100 text-yellow-800 dark:bg-amber-950 dark:text-amber-200',
+  high: 'bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-200',
 };
 
 const TaskCard = ({ task, onEdit, refreshTasks }) => {
@@ -36,9 +36,9 @@ const TaskCard = ({ task, onEdit, refreshTasks }) => {
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-xl shadow-sm border ${isOverdue ? 'border-red-500' : 'border-gray-100 dark:border-gray-700'} p-4 flex flex-col gap-2 hover:shadow-md transition-shadow`}>
+    <div className={`bg-white dark:bg-slate-900 rounded-lg shadow-sm border ${isOverdue ? 'border-red-500' : 'border-slate-200 dark:border-slate-800'} p-4 flex flex-col gap-2 hover:shadow-md transition-shadow dark:hover:border-slate-700`}>
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-sm font-semibold text-gray-800 dark:text-white leading-snug flex-1">{task.title}</h3>
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-white leading-snug flex-1">{task.title}</h3>
         <span
           className={`text-xs font-medium px-2 py-0.5 rounded-full whitespace-nowrap ${PRIORITY_COLORS[task.priority]}`}
         >
@@ -47,28 +47,28 @@ const TaskCard = ({ task, onEdit, refreshTasks }) => {
       </div>
 
       {task.description && (
-        <p className="text-xs text-gray-500 line-clamp-2">{task.description}</p>
+        <p className="text-xs text-slate-500 line-clamp-2 dark:text-slate-400">{task.description}</p>
       )}
 
       {isOverdue && (
         <p className="text-xs font-bold text-red-500">OVERDUE</p>
       )}
       {daysRemaining !== null && (
-        <p className="text-xs text-gray-400">Due in {daysRemaining} day{daysRemaining !== 1 ? 's' : ''}</p>
+        <p className="text-xs text-slate-400 dark:text-slate-500">Due in {daysRemaining} day{daysRemaining !== 1 ? 's' : ''}</p>
       )}
 
       {task.status && (
-        <p className="text-xs text-gray-400 capitalize">{task.status}</p>
+        <p className="text-xs text-slate-400 capitalize dark:text-slate-500">{task.status}</p>
       )}
 
       <div className="flex items-center gap-2 mt-1">
         <button
           onClick={() => onEdit(task)}
-          className="text-xs text-indigo-600 hover:underline"
+          className="text-xs text-blue-600 hover:underline dark:text-[#579DFF]"
         >
           Edit
         </button>
-        <span className="text-gray-300">|</span>
+        <span className="text-slate-300 dark:text-slate-700">|</span>
         <button
           onClick={handleDelete}
           className="text-xs text-red-500 hover:underline"

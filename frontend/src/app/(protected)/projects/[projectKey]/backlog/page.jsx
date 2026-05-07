@@ -95,7 +95,7 @@ export default function BacklogPage({ params }) {
     updateIssue({ ...draggedIssue, sprintId: newSprintId });
   };
 
-  if (!project) return <div className="p-4">Loading backlog...</div>;
+  if (!project) return <div className="p-4 text-slate-500 dark:text-slate-400">Loading backlog...</div>;
 
   const filterIssues = (issueList) => issueList.filter(issue =>
     issue.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -103,10 +103,10 @@ export default function BacklogPage({ params }) {
   );
 
   return (
-    <div className="flex flex-col h-full bg-white">
+    <div className="flex flex-col h-full bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
       <div className="px-4 pt-4 pb-4">
-        <div className="text-sm text-slate-500 mb-2">Projects / {project.name}</div>
-        <h1 className="text-2xl font-semibold text-slate-800 mb-4">Backlog</h1>
+        <div className="text-sm text-slate-500 mb-2 dark:text-slate-500">Projects / {project.name}</div>
+        <h1 className="text-2xl font-semibold text-slate-800 mb-4 dark:text-slate-100">Backlog</h1>
 
         <div className="flex items-center gap-4">
           <div className="relative w-64">
@@ -115,14 +115,14 @@ export default function BacklogPage({ params }) {
               placeholder="Search backlog"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-8 pl-8 pr-3 text-sm border border-slate-300 rounded-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
+              className="w-full h-8 pl-8 pr-3 text-sm border border-slate-300 rounded-sm bg-white text-slate-900 placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
             />
             <Search className="w-4 h-4 absolute left-2.5 top-2 text-slate-500" />
           </div>
 
           <div className="flex -space-x-2">
-            <div className="w-8 h-8 rounded-full border-2 border-white bg-blue-600 text-white flex items-center justify-center text-xs z-10">J</div>
-            <div className="w-8 h-8 rounded-full border-2 border-white bg-green-500 text-white flex items-center justify-center text-xs z-0">A</div>
+            <div className="w-8 h-8 rounded-full border-2 border-white bg-blue-600 text-white flex items-center justify-center text-xs z-10 dark:border-slate-950">J</div>
+            <div className="w-8 h-8 rounded-full border-2 border-white bg-green-500 text-white flex items-center justify-center text-xs z-0 dark:border-slate-950">A</div>
           </div>
         </div>
       </div>

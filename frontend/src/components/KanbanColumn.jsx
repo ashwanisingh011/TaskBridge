@@ -5,10 +5,10 @@ import IssueCard from './IssueCard';
 
 export default function KanbanColumn({ columnId, title, issues, projectKey }) {
   return (
-    <div className="flex flex-col bg-slate-50 rounded-md w-[280px] shrink-0 max-h-full">
-      <div className="p-3 pb-2 flex items-center justify-between sticky top-0 bg-slate-50 rounded-t-md z-10">
-        <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider truncate mr-2">
-          {title} <span className="text-slate-400 font-normal ml-1">{issues.length}</span>
+    <div className="flex flex-col bg-slate-50 rounded-md w-[280px] shrink-0 max-h-full border border-transparent dark:bg-slate-900 dark:border-slate-800">
+      <div className="p-3 pb-2 flex items-center justify-between sticky top-0 bg-slate-50 rounded-t-md z-10 dark:bg-slate-900">
+        <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider truncate mr-2 dark:text-slate-400">
+          {title} <span className="text-slate-400 font-normal ml-1 dark:text-slate-500">{issues.length}</span>
         </h3>
       </div>
 
@@ -17,7 +17,7 @@ export default function KanbanColumn({ columnId, title, issues, projectKey }) {
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className={`flex-1 p-2 min-h-[150px] overflow-y-auto ${snapshot.isDraggingOver ? 'bg-slate-100' : ''}`}
+            className={`flex-1 p-2 min-h-[150px] overflow-y-auto rounded-b-md ${snapshot.isDraggingOver ? 'bg-slate-100 dark:bg-blue-950/30' : ''}`}
           >
             {issues.map((issue, index) => (
               <IssueCard

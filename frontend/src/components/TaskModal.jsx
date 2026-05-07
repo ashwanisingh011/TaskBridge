@@ -65,22 +65,22 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, refreshTasks }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-md">
-        <div className="flex items-center justify-between px-3 py-4 border-b">
-          <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+    <div className="fixed inset-0 bg-slate-950/60 flex items-center justify-center z-50 p-4">
+      <div className="bg-white dark:bg-slate-900 rounded-lg shadow-2xl w-full max-w-md border border-slate-200 dark:border-slate-800">
+        <div className="flex items-center justify-between px-4 py-4 border-b border-slate-200 dark:border-slate-800">
+          <h2 className="text-lg font-semibold text-slate-800 dark:text-white">
             {taskToEdit ? 'Edit Task' : 'Add New Task'}
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-2xl leading-none"
+            className="text-slate-400 hover:text-slate-600 text-2xl leading-none dark:hover:text-white"
             aria-label="Close"
           >
             &times;
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-3 space-y-4">
+        <form onSubmit={handleSubmit} className="p-4 space-y-4">
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-3 py-2 rounded-lg">
               {error}
@@ -88,7 +88,7 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, refreshTasks }) => {
           )}
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-white mb-1">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">
               Title <span className="text-red-500">*</span>
             </label>
             <input
@@ -96,42 +96,42 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, refreshTasks }) => {
               name="title"
               value={form.title}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full border border-slate-300 rounded px-3 py-2 text-sm bg-white text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               placeholder="Task title"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium dark:text-white text-gray-700 mb-1">Description</label>
+            <label className="block text-sm font-medium dark:text-slate-200 text-slate-700 mb-1">Description</label>
             <textarea
               name="description"
               value={form.description}
               onChange={handleChange}
               rows={3}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+              className="w-full border border-slate-300 rounded px-3 py-2 text-sm bg-white text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               placeholder="Optional description"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium dark:text-white text-gray-700 mb-1">Due Date</label>
+            <label className="block text-sm font-medium dark:text-slate-200 text-slate-700 mb-1">Due Date</label>
             <input
               type="date"
               name="dueDate"
               value={form.dueDate}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg  px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full border border-slate-300 rounded px-3 py-2 text-sm bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium dark:text-white text-gray-700 mb-1">Status</label>
+              <label className="block text-sm font-medium dark:text-slate-200 text-slate-700 mb-1">Status</label>
               <select
                 name="status"
                 value={form.status}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full border border-slate-300 rounded px-3 py-2 text-sm bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               >
                 <option value="todo">To Do</option>
                 <option value="in-progress">In Progress</option>
@@ -139,12 +139,12 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, refreshTasks }) => {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium dark:text-white text-gray-700 mb-1">Priority</label>
+              <label className="block text-sm font-medium dark:text-slate-200 text-slate-700 mb-1">Priority</label>
               <select
                 name="priority"
                 value={form.priority}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full border border-slate-300 rounded px-3 py-2 text-sm bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               >
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
@@ -157,14 +157,14 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, refreshTasks }) => {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm text-gray-700 border border-gray-300 dark:text-white rounded-lg hover:bg-gray-50 hover:dark:text-black"
+              className="px-4 py-2 text-sm text-slate-700 border border-slate-300 dark:text-slate-200 rounded hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-4 py-2 text-sm text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 disabled:opacity-60"
+              className="px-4 py-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700 disabled:opacity-60"
             >
               {loading ? 'Saving…' : taskToEdit ? 'Save Changes' : 'Add Task'}
             </button>

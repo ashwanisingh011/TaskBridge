@@ -1,19 +1,38 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/useAuth';
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useAuth();
+  const { user, isAuthReady } = useAuth();
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if (user === null) {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted && isAuthReady && user === null) {
       router.push('/login');
     }
-  }, [user, router]);
+  }, [user, router, isMounted, isAuthReady]);
 
-  if (user === null) return null; // Or a loading spinner
+  if (!isMounted || !isAuthReady) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-white text-sm text-slate-500 dark:bg-slate-950 dark:text-slate-400">
+        Loading...
+      </div>
+    );
+  }
+
+  if (user === null) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-white text-sm text-slate-500 dark:bg-slate-950 dark:text-slate-400">
+        Redirecting...
+      </div>
+    );
+  }
 
   return children;
 };
